@@ -10,5 +10,5 @@ def sumn(n):
 
 
 # -- The main program starts here
-print("Sum of the 20 first integers: ", sumn(20))
-print("Sum of the 100, first integers: ", sumn(100))
+print("Sum of the 20 first integers is: ", sumn(20))
+print("Sum of the 100, first integers is: ", sumn(100))

@@ -1,0 +1,4 @@
+For the first exercise if we place the debugger in the return line from the second function and we play de debug mode,
+we can see that first it reads both functions and then it goes to the first print. The first print works correct but
+in the next one (second print) we obtain a ZeroDivisionError and the program stops at that point. If we look at the
+values of the variables, we can see that the values for the division t0 / t1 are "t0:2" and "t1:0" 

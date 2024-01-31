@@ -12,7 +12,7 @@ for i in user_seq:
     else:
         dna_dict[i] += 1
 
-print("Total length of the sequence is :", len(user_seq))
+print("Total length:", len(user_seq))
 
 for key, value in dna_dict.items():
     print(key + ":", value)

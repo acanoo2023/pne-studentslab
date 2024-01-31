@@ -16,3 +16,5 @@ print("Total length:", len(user_seq))
 
 for key, value in dna_dict.items():
     print(key + ":", value)
+
+

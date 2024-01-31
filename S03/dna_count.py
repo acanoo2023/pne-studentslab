@@ -18,3 +18,5 @@ for key, value in dna_dict.items():
     print(key + ":", value)
 
 
+
+

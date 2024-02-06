@@ -14,7 +14,7 @@ print(len(''.join(list_contents)))
 
 
 
-# ANOTHER WAY:
+# ANOTHER WAY with easier code:
 
 index = file_contents.find('\n')
 file_contents = (file_contents[index:]).replace('\n', '')

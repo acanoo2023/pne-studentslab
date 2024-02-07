@@ -19,4 +19,6 @@ def seq_len(filename):
     seq = seq_read_fasta("sequences/" + filename + ".txt")
     print("Gene", filename, "-> Length:", len(seq))
 
-def seq_count_base(seq, base)
+def seq_count_base(filename, base):
+    seq = seq_read_fasta("sequences/" + filename + ".txt")
+    print(" ", base + ":", seq.count(base))

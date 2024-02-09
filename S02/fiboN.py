@@ -5,9 +5,7 @@ def fibonacci(n):
         series.append(next_number)
     return series
 
-
-n = fibonacci(11)
-print(n)
-
-
-
+n = fibonacci(16)
+print("The 5th Fibonacci number is:", n[5])
+print("The 10th Fibonacci number is:", n[10])
+print("The 15th Fibonacci number is:", n[15])

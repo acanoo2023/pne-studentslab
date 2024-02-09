@@ -49,3 +49,21 @@ def seq_complement(seq):
         complement_seq += bases_dict[i]
 
     return seq_20, complement_seq
+
+def get_base(seq):
+    bases_dict = {}
+
+    for i in seq:
+        if i not in bases_dict:
+            bases_dict[i] = 1
+        else:
+            bases_dict[i] += 1
+
+    base = ""
+
+    for i in bases_dict:
+        if base == "":
+            base += bases_dict[i]
+        elif bases_dict[i] > int(base):
+            base == bases
+    return base

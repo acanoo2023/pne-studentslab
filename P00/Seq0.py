@@ -33,3 +33,9 @@ def seq_count(filename):
         d[base] = amount
 
     return d
+
+def seq_reverse(seq, n):
+    short_seq = seq[:n]
+    reversed = short_seq[::-1]
+
+    return short_seq, reversed

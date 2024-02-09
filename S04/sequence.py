@@ -19,3 +19,5 @@ print(len(''.join(list_contents)))
 index = file_contents.find('\n')
 file_contents = (file_contents[index:]).replace('\n', '')
 print(len(file_contents))
+
+

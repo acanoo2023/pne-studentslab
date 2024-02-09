@@ -2,6 +2,7 @@ def seq_ping():
     print("Ok")
 
 
+
 def seq_read_fasta(filename):
     from pathlib import Path
 
@@ -15,13 +16,19 @@ def seq_read_fasta(filename):
 
     return seq
 
+
+
 def seq_len(filename):
     seq = seq_read_fasta("sequences/" + filename + ".txt")
     print("Gene", filename, "-> Length:", len(seq))
 
+
+
 def seq_count_base(filename, base):
     seq = seq_read_fasta("sequences/" + filename + ".txt")
     print(" ", base + ":", seq.count(base))
+
+
 
 def seq_count(filename):
     bases_list = ["A", "C", "T", "G"]
@@ -34,11 +41,15 @@ def seq_count(filename):
 
     return d
 
+
+
 def seq_reverse(seq, n):
     short_seq = seq[:n]
     reversed = short_seq[::-1]
 
     return short_seq, reversed
+
+
 
 def seq_complement(seq):
     bases_dict = {"A": "T", "C": "G", "T": "A", "G": "C"}
@@ -49,6 +60,8 @@ def seq_complement(seq):
         complement_seq += bases_dict[i]
 
     return seq_20, complement_seq
+
+
 
 def get_base(seq):
     bases_dict = {}
@@ -61,9 +74,10 @@ def get_base(seq):
 
     base = ""
 
+    max_count = 0
     for i in bases_dict:
-        if base == "":
-            base += bases_dict[i]
-        elif bases_dict[i] > int(base):
-            base == bases
+        if bases_dict[i] > max_count:
+            max_count = bases_dict[i]
+            base = i
+
     return base

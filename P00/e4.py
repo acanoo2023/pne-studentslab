@@ -1,6 +1,6 @@
 from Seq0 import *
 
-filename_list = ["U5", "ADA", "FRAT1", "FXN", ]
+filename_list = ["U5", "ADA", "FRAT1", "FXN"]
 bases_list = ["A", "C", "T", "G"]
 
 for file in filename_list:

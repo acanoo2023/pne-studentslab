@@ -39,3 +39,13 @@ def seq_reverse(seq, n):
     reversed = short_seq[::-1]
 
     return short_seq, reversed
+
+def seq_complement(seq):
+    bases_dict = {"A": "T", "C": "G", "T": "A", "G": "C"}
+    seq_20 = seq[:20]
+    complement_seq = ""
+
+    for i in seq_20:
+        complement_seq += bases_dict[i]
+
+    return seq_20, complement_seq

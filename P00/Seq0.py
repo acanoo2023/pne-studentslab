@@ -46,10 +46,10 @@ def seq_count(seq):
 
 
 def seq_reverse(seq, n):
-    short_seq = seq[:n]
+    short_seq = seq[:20]
     reversed = short_seq[::-1]
 
-    return short_seq, reversed
+    return reversed
 
 
 
@@ -61,7 +61,7 @@ def seq_complement(seq):
     for i in seq_20:
         complement_seq += bases_dict[i]
 
-    return seq_20, complement_seq
+    return complement_seq
 
 
 

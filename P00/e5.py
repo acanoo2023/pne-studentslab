@@ -1,9 +1,12 @@
-from Seq0 import *
+from Seq02 import *
 
 filename_list = ["U5", "ADA", "FRAT1", "FXN"]
 
 for file in filename_list:
-    bases_dict = seq_count(file)
+    seq = seq_read_fasta("sequences/" + file + ".txt")
+    bases_dict = seq_count(seq)
     print("GENE", file + ":", bases_dict)
+
+
 
 

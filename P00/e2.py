@@ -1,4 +1,4 @@
-from Seq0 import *
+from Seq02 import *
 u5_seq = seq_read_fasta("sequences/U5.txt")
 
 seq_with_20_char = ""

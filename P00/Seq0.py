@@ -18,23 +18,25 @@ def seq_read_fasta(filename):
 
 
 
-def seq_len(filename):
-    seq = seq_read_fasta("sequences/" + filename + ".txt")
-    print("Gene", filename, "-> Length:", len(seq))
+def seq_len(seq):
+    length = len(seq)
+
+    return length
 
 
 
-def seq_count_base(filename, base):
-    seq = seq_read_fasta("sequences/" + filename + ".txt")
-    print(" ", base + ":", seq.count(base))
+def seq_count_base(seq, base):
+    number = seq.count(base)
+
+    return number
 
 
 
-def seq_count(filename):
+
+def seq_count(seq):
     bases_list = ["A", "C", "T", "G"]
     d = {'A': 0, 'T': 0, 'C': 0, 'G': 0}
 
-    seq = seq_read_fasta("sequences/" + filename + ".txt")
     for base in bases_list:
         amount = seq.count(base)
         d[base] = amount

@@ -1,4 +1,4 @@
-from Seq02 import *
+from Seq0 import *
 
 seq_U5 = seq_read_fasta("sequences/U5.txt")
 seq_ADA = seq_read_fasta("sequences/ADA.txt")

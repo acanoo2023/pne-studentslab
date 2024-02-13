@@ -1,4 +1,4 @@
-from Seq02 import *
+from Seq0 import *
 
 filename_list = ["U5", "ADA", "FRAT1", "FXN"]
 bases_list = ["A", "C", "T", "G"]

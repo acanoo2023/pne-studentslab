@@ -16,21 +16,6 @@ class Seq:
         """Calculate the length of the sequence"""
         return len(self.strbases)
 
-
-# --- Main program
-s1 = Seq("AGTACACTGGT")
-s2 = Seq("CGTAAC")
-
-# -- Printing the objects
-print(f"Sequence 1: {s1}")    # Here s1 and s2 take the values of the return in the __Str__ method
-print(f"  Length: {s1.len()}")  # Aquí como quiero el método "len" tengo que llamarlo.
-print(f"Sequence 2: {s2}")
-print(f"  Length: {s2.len()}")
-
-print("\n-----------------------------------------------\n")
-
-
-
 class Gene(Seq):    # Inherited class: All the methods from Seq will be performed in this new "Gene" class.
     """This class is derived from the Seq Class
        All the objects of class Gene will inherit
@@ -41,7 +26,7 @@ class Gene(Seq):    # Inherited class: All the methods from Seq will be performe
         # -- Call first the Seq initializer and then the
         # -- Gene init method
         super().__init__(strbases)  # Recuperamos los atributos de la clase anterior
-        self.name = name          # Y aquí creamos un nuevo atributo de esta nueva clase
+        self.name = name            # Y aquí creamos un nuevo atributo de esta nueva clase
         print("New gene created")
 
     def __str__(self):
@@ -50,17 +35,7 @@ class Gene(Seq):    # Inherited class: All the methods from Seq will be performe
 
 
 
-# --- Main program
-s1 = Seq("AGTACACTGGT")
-g = Gene("CGTAAC")
 
-# -- Printing the objects
-print(f"Sequence 1: {s1}")
-print(f"  Length: {s1.len()}")
-print(f"Gene: {g}")
-print(f"  Length: {g.len()}")
-
-print("\n-----------------------------------------------\n")
 
 # --- Main program
 s1 = Seq("AGTACACTGGT")
@@ -68,5 +43,7 @@ g = Gene("CGTAAC", "FRAT1")
 
 # -- Printing the objects
 print(f"Sequence 1: {s1}")
+print(f"  Length: {s1.len()}")
 print(f"Gene: {g}")
+print(f"  Length: {g.len()}")
 

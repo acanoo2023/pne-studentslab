@@ -1,5 +1,4 @@
 from Seq1 import Seq
-from Seq1 import Seq
 
 # -- Creating a Null sequence
 s1 = Seq()

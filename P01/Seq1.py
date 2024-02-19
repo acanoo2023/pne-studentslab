@@ -80,3 +80,10 @@ class Seq:
             output_3 = d
 
         return d
+
+    def reverse(self):
+        def seq_reverse(seq, n):
+            short_seq = seq[:20]
+            reversed = short_seq[::-1]
+
+            return reversed

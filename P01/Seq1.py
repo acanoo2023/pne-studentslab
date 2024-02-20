@@ -82,8 +82,18 @@ class Seq:
         return d
 
     def reverse(self):
-        def seq_reverse(seq, n):
-            short_seq = seq[:20]
-            reversed = short_seq[::-1]
+        output_4 = ""
 
-            return reversed
+        if self.strbases != "NULL":
+            flag_4 = 0
+            for i in self.strbases:
+                if i == "A" or i == "C" or i == "G" or i == "T":
+                    flag_4 += 1
+            if flag_4 == len(self.strbases):
+                output_4 = self.strbases[::-1]
+            else:
+                output_4 = "ERROR"
+        else:
+            output_4 = "NULL"
+
+        return output_4

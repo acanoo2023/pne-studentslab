@@ -97,3 +97,25 @@ class Seq:
             output_4 = "NULL"
 
         return output_4
+
+    def complement(self):
+        output_5 = ""
+
+        if self.strbases != "NULL":
+            flag_5 = 0
+            for i in self.strbases:
+                if i == "A" or i == "C" or i == "G" or i == "T":
+                    flag_5 += 1
+            if flag_5 == len(self.strbases):
+                bases_dict = {"A": "T", "C": "G", "T": "A", "G": "C"}
+                complement_seq = ""
+                for i in self.strbases:
+                    complement_seq += bases_dict[i]
+                output_5 = complement_seq
+            else:
+                output_5 = "ERROR"
+        else:
+            output_5 = "NULL"
+
+        return output_5
+

@@ -1,4 +1,6 @@
 from Seq1 import Seq
+print("-----| Practice 1, Exercise 9 |------")
+
 s1 = Seq()
 s1.read_fasta("sequences/U5.txt")
 

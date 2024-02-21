@@ -1,4 +1,6 @@
 from Seq1 import Seq
+print("-----| Practice 1, Exercise 4 |------")
+
 
 seq_list = [Seq(), Seq("ACTGA"), Seq("Invalid sequence")]
 def print_seqs(seq_list):

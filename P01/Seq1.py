@@ -8,7 +8,7 @@ class Seq:
 
             if flag == len(strbases):
                 print("New sequence created!")
-                self.strbases = "VALID"
+                self.strbases = strbases
             else:
                 print("INVALID sequence!")
                 self.strbases = "INVALID"
@@ -20,10 +20,11 @@ class Seq:
     def __str__(self):
         output = ""
         if self.strbases != "NULL":
-            if self.strbases == "VALID":
-                output = self.strbases
-            else:
+            if self.strbases == "INVALID":
                 output = "ERROR"
+            else:
+                output = self.strbases
+
         else:
             output = "NULL"
 
@@ -39,8 +40,8 @@ class Seq:
         return len_0
 
     def count_base(self, base):
-        self.strbase = base
-        output_2 = ""
+        self.base = base
+        output_2 = 0
         if self.strbases == "NULL" or self.strbases == "INVALID":
             output_2 = 0
         else:

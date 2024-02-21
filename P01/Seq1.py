@@ -40,6 +40,7 @@ class Seq:
 
     def count_base(self, base):
         self.strbase = base
+        output_2 = ""
         if self.strbases == "NULL" or self.strbases == "INVALID":
             output_2 = 0
         else:

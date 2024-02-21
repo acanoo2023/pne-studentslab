@@ -4,7 +4,7 @@ seq_list = [Seq(), Seq("ACTGA"), Seq("Invalid sequence")]
 def print_seqs(seq_list):
     for seq in seq_list:
         position = seq_list.index(seq)
-        print(f"Sequence {position}: (Length: {Seq.len(seq)}) {seq}")
-        print(f"  A: {Seq.count_base(seq, 'A')},  C: {Seq.count_base(seq, 'C')},  G: {Seq.count_base(seq, 'G')},  G: {Seq.count_base(seq, 'T')}")
+        print(f"Sequence {position}: (Length: {seq.len()}) {seq}")
+        print(f"  A: {seq.count_base('A')},  C: {seq.count_base('C')},  G: {seq.count_base('G')},  T: {seq.count_base('T')}")
 
 print_seqs(seq_list)

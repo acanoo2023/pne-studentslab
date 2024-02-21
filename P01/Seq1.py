@@ -97,7 +97,7 @@ class Seq:
 
         from pathlib import Path
 
-        file_contents = Path(self.filename).read_text()
+        file_contents = Path(filename).read_text()
         list_contents = file_contents.split('\n')
 
         seq = ""

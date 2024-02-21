@@ -13,9 +13,4 @@ for i in range(1, len(list_contents)):
     print(list_contents[i])
 
 
-seq_complete = ""
-for i in range(1, len(list_contents)):
-    seq_complete += list_contents[i]
-
-print(seq_complete)
 

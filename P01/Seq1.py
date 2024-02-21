@@ -91,3 +91,37 @@ class Seq:
 
         return output_5
 
+
+    def read_fasta(self, filename):
+        self.filename = filename
+
+        from pathlib import Path
+
+        file_contents = Path(self.filename).read_text()
+        list_contents = file_contents.split('\n')
+
+        seq = ""
+
+        for i in range(1, len(list_contents)):
+            seq += list_contents[i]
+
+        return seq
+
+    def most_frequent(self):
+        bases_dict = {}
+
+        for i in self.strbases:
+            if i not in bases_dict:
+                bases_dict[i] = 1
+            else:
+                bases_dict[i] += 1
+
+        base = ""
+
+        max_count = 0
+        for i in bases_dict:
+            if bases_dict[i] > max_count:
+                max_count = bases_dict[i]
+                base = i
+
+        return base

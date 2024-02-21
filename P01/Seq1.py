@@ -24,7 +24,6 @@ class Seq:
                 output = "ERROR"
             else:
                 output = self.strbases
-
         else:
             output = "NULL"
 
@@ -65,39 +64,30 @@ class Seq:
 
     def reverse(self):
         output_4 = ""
-
-        if self.strbases != "NULL":
-            flag_4 = 0
-            for i in self.strbases:
-                if i == "A" or i == "C" or i == "G" or i == "T":
-                    flag_4 += 1
-            if flag_4 == len(self.strbases):
-                output_4 = self.strbases[::-1]
-            else:
-                output_4 = "ERROR"
-        else:
+        if self.strbases == "NULL":
             output_4 = "NULL"
+        elif self.strbases == "INVALID":
+            output_4 = "ERROR"
+        else:
+            output_4 = self.strbases[::-1]
 
         return output_4
+
+
 
     def complement(self):
         output_5 = ""
 
-        if self.strbases != "NULL":
-            flag_5 = 0
-            for i in self.strbases:
-                if i == "A" or i == "C" or i == "G" or i == "T":
-                    flag_5 += 1
-            if flag_5 == len(self.strbases):
-                bases_dict = {"A": "T", "C": "G", "T": "A", "G": "C"}
-                complement_seq = ""
-                for i in self.strbases:
-                    complement_seq += bases_dict[i]
-                output_5 = complement_seq
-            else:
-                output_5 = "ERROR"
-        else:
+        if self.strbases == "NULL":
             output_5 = "NULL"
+        elif self.strbases == "INVALID":
+            output_5 = "ERROR"
+        else:
+            bases_dict = {"A": "T", "C": "G", "T": "A", "G": "C"}
+            complement_seq = ""
+            for i in self.strbases:
+                complement_seq += bases_dict[i]
+            output_5 = complement_seq
 
         return output_5
 

@@ -93,7 +93,6 @@ class Seq:
 
 
     def read_fasta(self, filename):
-        self.filename = filename
 
         from pathlib import Path
 
@@ -106,6 +105,8 @@ class Seq:
             seq += list_contents[i]
 
         return seq
+
+
 
     def most_frequent(self):
         bases_dict = {}

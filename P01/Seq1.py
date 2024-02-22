@@ -97,15 +97,11 @@ class Seq:
         from pathlib import Path
 
         file_contents = Path(filename).read_text()
-        list_contents = file_contents.split('\n')
+        first_line = file_contents.find('\n')
+        new_sequence = file_contents[first_line:]
+        self.strbases = new_sequence.replace("\n", "")
 
-        seq = ""
-
-        for i in range(1, len(list_contents)):
-            seq += list_contents[i]
-
-        return seq
-
+        return self.strbases
 
 
     def most_frequent(self):

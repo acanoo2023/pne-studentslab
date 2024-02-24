@@ -41,7 +41,7 @@ def generate_seqs(pattern, number):
 def print_seqs(seq_list, color):
     for seq in seq_list:
         position = seq_list.index(seq)
-        termcolor.cprint(f"Sequence {position}: (Length: {Seq.len(seq)}) {seq}", color)
+        termcolor.cprint(f"Sequence {position}: (Length: {seq.len()}) {seq}", color)
         # Para imprimir en color importamos: "import termcolor" y cuando vayamos a imprimir algo
         # ponemos termcolorc.print("lo que queramos imprimir" , "color")
 

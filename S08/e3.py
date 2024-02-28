@@ -4,7 +4,8 @@ import socket
 PORT = 8081
 IP = "212.128.255.64" # depends on the computer the server is running
 
-while True:
+flag = True
+while flag:
     # -- Ask the user for the message
     message = input("Enter your message")
 
@@ -19,3 +20,4 @@ while True:
 
     # -- Close the socket
     s.close()
+    flag = False

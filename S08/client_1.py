@@ -1,9 +1,12 @@
 import socket
 
 # SERVER IP, PORT
-PORT = 8080
+# Write here the correct parameter for connecting to the
+# Teacher's server
+PORT = 8081
 IP = "192.168.124.179"
 # it depends on the machine the server is running
+
 
 # First, create the socket
 # We will always use these parameters: AF_INET y SOCK_STREAM
@@ -16,10 +19,5 @@ s.connect((IP, PORT))
 # It necesary to encode the string into bytes
 s.send(str.encode("HELLO FROM THE CLIENT!!!"))
 
-# Receive data from the server
-msg = s.recv(2048)
-print("MESSAGE FROM THE SERVER:\n")
-print(msg.decode("utf-8"))
-
-# Closing the socket
+# Close the socket
 s.close()

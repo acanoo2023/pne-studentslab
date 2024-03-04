@@ -2,7 +2,7 @@ import socket
 
 # Configure the Server's IP and PORT
 PORT = 5362
-IP = "10.1.131.225"
+IP = "212.128.255.92"
 # it depends on the machine the server is running
 MAX_OPEN_REQUESTS = 5
 

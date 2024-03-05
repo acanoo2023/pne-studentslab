@@ -1,4 +1,5 @@
 import socket
+from termcolor import colored
 
 # Configure the Server's IP and PORT
 PORT = 8081
@@ -49,7 +50,7 @@ while True:
         msg = msg_raw.decode()   #This function translate to "string language"
 
         # -- Print the received message
-        print("\tThe client says (received message): ", msg)
+        print("\tThe client says (received message): ", colored(msg, "yellow"))
 
         # -- Send a response message to the client
         response = "ECHO: " + msg + "\n" #Message that we (server) send back to the server after he writes us

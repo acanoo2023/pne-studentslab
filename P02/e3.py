@@ -6,7 +6,7 @@ EXERCISE = 3
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 # -- Parameters of the server to talk to
-IP = "212.128.255.92" # your IP address
+IP = "192.168.0.39" # your IP address
 PORT = 5362
 
 # -- Create a client object

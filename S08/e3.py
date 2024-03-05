@@ -2,7 +2,7 @@ import socket
 
 # SERVER IP, PORT
 PORT = 5362
-IP = "212.128.255.92"
+IP = "192.168.0.39"
 
 flag = True
 while flag:

@@ -9,7 +9,7 @@ print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 IP = "212.128.255.151"
 PORT = 8081
 
+filename_list = ["U5", "FRAT1", "ADA"]
 
 
-filename_list = ["U5", "ADA", "FRAT1", "FXN"]
 

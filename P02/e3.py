@@ -5,6 +5,10 @@ EXERCISE = 3
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
+#           (To run this exercise, first you must run the server created in S08)
+
+
+
 # -- Parameters of the server to talk to
 IP = "212.128.255.151" # your IP address
 PORT = 8081

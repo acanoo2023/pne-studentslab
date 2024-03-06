@@ -1,8 +1,8 @@
 import socket
 
 # Configure the Server's IP and PORT
-PORT = 5362
-IP = "192.168.0.39"
+PORT = 8081
+IP = "212.128.255.151"
 
 #Computer from class: 212.128.255.92
 #Computer from home: 192.168.0.39

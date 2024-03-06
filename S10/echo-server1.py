@@ -3,7 +3,7 @@ from termcolor import colored
 
 # Configure the Server's IP and PORT
 PORT = 8081
-IP = "212.128.255.92" # this IP address is local, so only requests from the same machine are possible
+IP = "212.128.255.151" # this IP address is local, so only requests from the same machine are possible
 
 # -- Step 1: create the socket
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -38,7 +38,7 @@ while True:
     # -- If the user doesn't close the program --> Execute this part
     else:
 
-        print(f"\tA Client has connected to the server: {client_ip_port}")
+        print("\tA Client has connected to the server!!")
 
 
         # -- Read the message from the client
@@ -50,7 +50,7 @@ while True:
         msg = msg_raw.decode()   #This function translate to "string language"
 
         # -- Print the received message
-        print("\tThe client says (received message): ", colored(msg, "yellow"))
+        print("\tMessage received: ", colored(msg, "yellow"))
 
         # -- Send a response message to the client
         response = "ECHO: " + msg + "\n" #Message that we (server) send back to the server after he writes us

@@ -2,7 +2,7 @@ import socket
 import termcolor
 
 PORT = 8081
-IP = "212.128.255.151"
+IP = "212.128.255.90"
 
 ls = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 ls.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

@@ -1,6 +1,17 @@
 import socket
 import termcolor
 
+
+def send_response(msg):
+    if msg.startswith("PING"):
+        response = "OK!\n"
+    return response
+
+def print_in_server(msg):
+    if msg.startswith("PING"):
+        see = "PING command!\n"
+    return see
+
 class SeqServer:
     PORT = 8080
     IP = "127.0.0.1"
@@ -33,18 +44,14 @@ class SeqServer:
                 msg_raw = cs.recv(2048)
                 msg = msg_raw.decode()
 
-                response = ""
-
-                if msg.startswith("PING"):
-                    response = send_response(msg)
-                    print(termcolor.colored("PING Command", "green"))
+                response = send_response(msg)
+                print(termcolor.colored(print_in_server(msg), "green"))
 
                 cs.send(response.encode())
 
                 cs.close()
 
-def send_response(msg):
-    if msg
+
 
 
 server1 = SeqServer(8080, "127.0.0.1")

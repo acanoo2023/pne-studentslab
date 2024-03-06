@@ -15,6 +15,9 @@ def print_in_server(msg):
 class SeqServer:
     PORT = 8080
     IP = "127.0.0.1"
+
+    my_sequences = ["ACACGTTACGACT", "CAGTAGACGTCGA", "GTTACTCATCAACT", "TCAGTCACACGTG"]
+
     def __init__(self, PORT, IP):
         self.PORT = PORT
         self.IP = IP

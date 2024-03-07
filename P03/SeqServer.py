@@ -2,6 +2,7 @@ import socket
 import termcolor
 from Seq1 import Seq
 
+
 my_sequences = ["ACACGTTACGACTACGCATCGA", "CAGTAGACGTTTGAAGTAGCCGA", "GTTACTCATCAACGACTACGACT", "TCAGTCTTCAACGTACACACGTG"]
 
 def send_response(msg):
@@ -13,6 +14,18 @@ def send_response(msg):
     elif msg.startswith("GET"):
         print("GET")
         output = get_response(msg)
+    elif msg.startswith("INFO"):
+        print("INFO")
+        output = info_response(msg)
+    elif msg.startswith("COMP"):
+        print("COMP")
+        output = info_complement(msg)
+    elif msg.startswith("REV"):
+        print("REV")
+        output = info_reverse(msg)
+    elif msg.startswith("GENE"):
+        print("GENE")
+        output = info_gene(msg)
 
 
     else:
@@ -21,6 +34,7 @@ def send_response(msg):
     return output
 
 def ping_response():
+    print("OK!\n")
     return "OK!\n"
 
 def get_response(msg):
@@ -35,12 +49,55 @@ def get_response(msg):
 
     return sq
 
+def info_response(msg):
+    new_msg = msg.replace("INFO", "").strip()
+
+    s1 = Seq(new_msg)
+
+    a = "A: " + str(s1.count_base("A")) + " (" + str(round(s1.count_base("A") * 100 / s1.len(), 2)) + "%)"
+    c = "C: " + str(s1.count_base("C")) + " (" + str(round(s1.count_base("C") * 100 / s1.len(), 2)) + "%)"
+    g = "G: " + str(s1.count_base("G")) + " (" + str(round(s1.count_base("G") * 100 / s1.len(), 2)) + "%)"
+    t = "T: " + str(s1.count_base("T")) + " (" + str(round(s1.count_base("T") * 100 / s1.len(), 2)) + "%)"
+
+    l = ["A", "C", "G", "T"]
+    print("Sequence:", s1)
+    print("Total length:", s1.len())
+    for i in l:
+        print(f"{i}: {s1.count_base(i)} ({round(s1.count_base(i) * 100 / s1.len(),2)}%)")
+
+    print("\n")
+    output = f"Sequence: {s1} \n Total length: {s1.len()} \n {a} \n {c} \n {g} \n {t} \n"
+
+    return output
 
 
+def info_complement(msg):
+    new_msg = msg.replace("COMP", "").strip()
+
+    s1 = Seq(new_msg)
+
+    print(s1.complement() + "\n")
+
+    return s1.complement() + "\n"
+
+def info_reverse(msg):
+    new_msg = msg.replace("REV", "").strip()
+
+    s1 = Seq(new_msg)
+
+    print(s1.reverse() + "\n")
+
+    return s1.reverse() + "\n"
 
 
+def info_gene(msg):
+    file = msg.replace("GENE", "").strip()
 
+    s1 = Seq()
+    direction = "../P01/sequences/" + file + ".txt"
+    print(s1.read_fasta(direction) + "\n")
 
+    return s1.read_fasta(direction) + "\n"
 
 
 

@@ -6,35 +6,45 @@ my_sequences = ["ACACGTTACGACTACGCATCGA", "CAGTAGACGTTTGAAGTAGCCGA", "GTTACTCATC
 
 def send_response(msg):
     msg = msg.strip()
+
     if msg.startswith("PING"):
-        output = "OK!\n"
-
+        print("PING Command!")
+        output = ping_response()
     elif msg.startswith("GET"):
-        if msg[-1] in ['0', '1', '2', '3']:
-            index = int(msg[-1])
-            output = my_sequences[index] + "\n"
-        else:
-            output = "Choice out of range (0-3)\n"
+        print("GET")
+        output = get_response(msg)
 
-    elif msg.startswith("INFO"):
-        s1 = Seq()
-        a = s1.count("A") / len(s1)
-        c = s1.count("C") / len(s1)
-        g = s1.count("G") / len(s1)
-        t = s1.count("T") / len(s1)
-        output = f"Sequence: {s1} \n Total length: {s1.len()} \n
 
+    else:
+        print("Invalid Command\n")
+        output = "Invalid Command\n"
     return output
 
+def ping_response():
+    return "OK!\n"
 
-def print_in_server(msg):
-    if msg.startswith("PING"):
-        see = "PING command!"
-    if msg.startswith("GET"):
-        see = "GET"
-    if msg.startswith("INFO"):
-        see = "INFO"
-    return see
+def get_response(msg):
+    sq = ""
+    if msg[-1] in ['0', '1', '2', '3']:
+        index = int(msg[-1])
+        sq = my_sequences[index] + "\n"
+        print(sq)
+    else:
+        print("Choice out of range (0-3)\n")
+        sq = "Choice out of range (0-3)\n"
+
+    return sq
+
+
+
+
+
+
+
+
+
+
+
 
 class SeqServer:
     PORT = 8080
@@ -70,8 +80,6 @@ class SeqServer:
                 msg = msg_raw.decode()
 
                 response = send_response(msg)
-                print(termcolor.colored(print_in_server(msg), "green"))
-                print(response)
 
                 cs.send(response.encode())
 

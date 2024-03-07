@@ -26,8 +26,6 @@ def send_response(msg):
     elif msg.startswith("GENE"):
         print("GENE")
         output = info_gene(msg)
-
-
     else:
         print("Invalid Command\n")
         output = "Invalid Command\n"

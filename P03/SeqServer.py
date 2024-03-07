@@ -3,7 +3,7 @@ import termcolor
 from Seq1 import Seq
 
 
-my_sequences = ["ACACGTTACGACTACGCATCGA", "CAGTAGACGTTTGAAGTAGCCGA", "GTTACTCATCAACGACTACGACT", "TCAGTCTTCAACGTACACACGTG"]
+my_sequences = ["ACACGTTACGACTACGCATCGA", "CAGTAGACGTTTGAAGTAGCCGA", "GTTACTCATCAACGACTACGACT", "TCAGTCTTCAACGTACACACGTG", "TTACGCGCATCGCATACGCTA"]
 
 def send_response(msg):
     msg = msg.strip()
@@ -39,13 +39,13 @@ def ping_response():
 
 def get_response(msg):
     sq = ""
-    if msg[-1] in ['0', '1', '2', '3']:
+    if msg[-1] in ['0', '1', '2', '3', '4']:
         index = int(msg[-1])
         sq = my_sequences[index] + "\n"
         print(sq)
     else:
-        print("Choice out of range (0-3)\n")
-        sq = "Choice out of range (0-3)\n"
+        print("Choice out of range (0-4)\n")
+        sq = "Choice out of range (0-4)\n"
 
     return sq
 

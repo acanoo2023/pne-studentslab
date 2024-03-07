@@ -22,7 +22,7 @@ def send_response(msg):
         c = s1.count("C") / len(s1)
         g = s1.count("G") / len(s1)
         t = s1.count("T") / len(s1)
-        output = f"Sequence: {s1} \n Total length: {s1.len()} \n
+        output = f"Sequence: {s1} \n Total length: {s1.len()} \n 
 
     return output
 

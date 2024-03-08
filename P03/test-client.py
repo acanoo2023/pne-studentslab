@@ -6,6 +6,7 @@ PORT = 8080
 print("-----| Practice 3, Exercise 7 |------")
 
 c = Client(IP, PORT)
+print(c)
 
 print("Testing PING:")
 print(c.talk("PING"))

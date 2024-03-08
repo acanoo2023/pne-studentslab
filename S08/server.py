@@ -1,14 +1,9 @@
 import socket
 
 # Configure the Server's IP and PORT
-PORT = 8081
-IP = "212.128.255.151"
+PORT = 8080
+IP = "127.0.0.1"
 
-#Computer from class: 212.128.255.92
-#Computer from home: 192.168.0.39
-
-
-# it depends on the machine the server is running
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections

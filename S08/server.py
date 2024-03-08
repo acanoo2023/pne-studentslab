@@ -11,6 +11,7 @@ number_con = 0
 
 # create an INET, STREAMing socket
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 try:
     serversocket.bind((IP, PORT))
     # become a server socket

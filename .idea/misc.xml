@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10" project-jdk-type="Python SDK" />
+  <component name="Black">
+    <option name="executionMode" value="BINARY" />
+    <option name="pathToExecutable" value="/usr/bin/black" />
+    <option name="sdkUUID" value="9ba47ed8-1a33-41e7-b55b-cb89d801d8ab" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (pne-studentslab)" project-jdk-type="Python SDK" />
 </project>

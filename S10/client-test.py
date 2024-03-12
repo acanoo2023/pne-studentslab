@@ -1,8 +1,8 @@
 from Client0 import Client
 import termcolor
 
-PORT = 8081
-IP = "212.128.255.151"
+PORT = 8080
+IP = "127.0.0.1"
 
 c = Client(IP, PORT)
 for i in range(0, 5):

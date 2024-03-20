@@ -3,7 +3,7 @@
   <component name="Black">
     <option name="executionMode" value="BINARY" />
     <option name="pathToExecutable" value="/usr/bin/black" />
-    <option name="sdkUUID" value="9ba47ed8-1a33-41e7-b55b-cb89d801d8ab" />
+    <option name="sdkName" value="Python 3.11 (pne-studentslab)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (pne-studentslab)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (pne-studentslab)" project-jdk-type="Python SDK" />
 </project>

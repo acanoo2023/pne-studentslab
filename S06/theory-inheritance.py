@@ -24,4 +24,3 @@ yourcar.set_speed(120)
 print(yourcar.speed)
 
 print(yourcar.make_cabrio(), "and music is", yourcar.music, "and speed is", yourcar.speed)
-print(yourcar.make_cabrio(), "and music is", mycar.music, "and speed is", yourcar.speed)

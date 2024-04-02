@@ -1,9 +1,9 @@
 import http.server
 import socketserver
+import termcolor
 
 # Define the Server's port
 PORT = 8080
-
 
 # -- This is for preventing the error: "Port already in use"
 socketserver.TCPServer.allow_reuse_address = True
@@ -17,12 +17,30 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         """This method is called whenever the client invokes the GET method
         in the HTTP protocol request"""
 
-        # We just print a message
-        print("GET received!")
+        # Print the request line
+        termcolor.cprint(self.requestline, 'green')
 
         # IN this simple server version:
         # We are NOT processing the client's request
-        # We are NOT generating any response message
+        # It is a happy server: It always returns a message saying
+        # that everything is ok
+
+        # Message to send back to the clinet
+        contents = "I am the happy server! :-)"
+
+        # Generating the response message
+        self.send_response(200)  # -- Status line: OK!
+
+        # Define the content-type header:
+        self.send_header('Content-Type', 'text/plain')
+        self.send_header('Content-Length', len(contents.encode()))
+
+        # The header is finished
+        self.end_headers()
+
+        # Send the response message
+        self.wfile.write(contents.encode())
+
         return
 
 
@@ -43,5 +61,5 @@ with socketserver.TCPServer(("", PORT), Handler) as httpd:
         httpd.serve_forever()
     except KeyboardInterrupt:
         print("")
-        print("Stopped by the user")
+        print("Stoped by the user")
         httpd.server_close()

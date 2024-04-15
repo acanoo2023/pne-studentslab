@@ -1,6 +1,8 @@
 import http.server
 import socketserver
 import termcolor
+from pathlib import Path
+
 
 # Define the Server's port
 PORT = 8080
@@ -26,13 +28,16 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         # that everything is ok
 
         # Message to send back to the client
-        if self.requestline.startswith("GET / "):
-            contents = "Welcome to my server"
+        if self.requestline.startswith("GET / ") or self.requestline.startswith("GET /index.html"):
+            contents = Path("./index.html").read_text()
             # Generating the response message
             self.send_response(200)  # -- Status line: OK!
-        else:
-            contents = "Resource not available"
+        elif self.requestline.startswith("GET /green.html") or self.requestline.startswith("GET /blue.html") or self.requestline.startswith("GET /pink.html"):
+            contents = Path("./error.html").read_text()
             # Generating the response message
+            self.send_response(404)  # -- Status line: Error
+        else:
+            contents = Path("./error.html")
             self.send_response(404)  # -- Status line: Error
 
 

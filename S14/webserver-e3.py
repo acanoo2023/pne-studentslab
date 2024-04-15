@@ -2,8 +2,6 @@ import http.server
 import socketserver
 import termcolor
 from pathlib import Path
-
-
 # Define the Server's port
 PORT = 8080
 
@@ -22,25 +20,20 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         # Print the request line
         termcolor.cprint(self.requestline, 'green')
 
-        # IN this simple server version:
-        # We are NOT processing the client's request
-        # It is a happy server: It always returns a message saying
-        # that everything is ok
 
-        # Message to send back to the client
         info = self.requestline.split(" ")[1]
-
-
-        if info == "/" or info == "/index.html":
+        # Message to send back to the client
+        if info == "/":
             contents = Path("./index.html").read_text()
             self.send_response(200)  # -- Status line: OK!
-        elif info == "/pink.html" or info == "/blue.html" or info == "/green.html":
-            contents = Path("./error.html").read_text()
-            self.send_response(404)  # -- Status line: NOT FOUND
         else:
-            contents = Path("./error.html")
-            self.send_response(404)  # -- Status line: NOT FOUND
+            try:
+                contents = Path("." + info).read_text()
+                self.send_response(200)  # -- Status line: OK!
 
+            except FileNotFoundError:
+                contents = Path("./Error.html").read_text()
+                self.send_response(404)  # -- Status line: NOT FOUND
 
         # Define the content-type header:
         self.send_header('Content-Type', 'text/html')

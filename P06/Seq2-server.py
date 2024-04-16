@@ -39,13 +39,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         content = ""
 
         if path == "/":
-            content = Path("./html/form-e2.html").read_text()
+            content = Path("./html/index.html").read_text()
             self.send_response(200)  # -- Status line: OK!
-        elif path.startswith("/echo") and arguments:
-            if "chk" in arguments:
-                content = read_html_file("echo-2.html").render(context={"user_input": arguments["msg"][0].upper()})
-            else:
-                content = read_html_file("echo-2.html").render(context={"user_input": arguments["msg"][0]})
+        elif path.startswith("/ping"):
+            content = Path("./html/ping.html").read_text()
             print(arguments)   #I print the arguments to see what I get on the arguments variable
                                #Since we just have 1 input, our dictionary will have just 1 key-value
         else:

@@ -46,7 +46,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 # - Server MAIN program
 # ------------------------
 # -- Set the new handler
-Handler = TestHandler
+Handler = TestHandler   #Here is where the class with the function "DO GET" is used
 
 # -- Open the socket server
 with socketserver.TCPServer(("", PORT), Handler) as httpd:

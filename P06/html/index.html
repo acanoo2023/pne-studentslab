@@ -8,20 +8,33 @@
    <form action="ping" method="get">
     <h1>SEQ2 server</h1>
     <p>Access to the Server</p>
-    <p>----------------------------------------------------------</p>
+    <p>___________________________________________________________</p>
     Is the server alive?
     <input type="submit" value="PING">
-    <p>----------------------------------------------------------</p>
-    Get a sequence. Select sequence number <b>
-       <select name="operation">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-
+    <p>___________________________________________________________</p>
+   </form>
+   <form action="get" method="get">
+   Get a sequence. Select sequence number
+       <select name="n">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
         <input type="submit" value="GET">
       </select>
+   </form>
+   <form action="gene" method="get">
+       <p>___________________________________________________________</p>
+       Get a Gene. Select the name
+       <select name="name">
+            <option value="U5">U5</option>
+            <option value="ADA">ADA</option>
+            <option value="FRAT1">FRAT1</option>
+            <option value="RNU6_269P">RNU6_269P</option>
+            <option value="FXN">FXN</option>
+        <input type="submit" value="GENE">
+       </select>
    </form>
 </body>
 </html>

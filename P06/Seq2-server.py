@@ -5,17 +5,11 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import jinja2 as j
 
+my_sequences = ["ACACGTTACGACTACGCATCGA", "CAGTAGACGTTTGAAGTAGCCGA", "GTTACTCATCAACGACTACGACT", "TCAGTCTTCAACGTACACACGTG", "TTACGCGCATCGCATACGCTA"]
 
-# Define the Server's port
 PORT = 8080
 
-
-# -- This is for preventing the error: "Port already in use"
 socketserver.TCPServer.allow_reuse_address = True
-
-
-# Class with our Handler. It is a called derived from BaseHTTPRequestHandler
-# It means that our class inherits all his methods and properties
 
 def read_html_file(filename):
     contents = Path("html/" + filename).read_text()
@@ -45,6 +39,19 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             content = Path("./html/ping.html").read_text()
             print(arguments)   #I print the arguments to see what I get on the arguments variable
                                #Since we just have 1 input, our dictionary will have just 1 key-value
+        elif path.startswith("/get"):
+            number_choice = arguments["n"][0]
+            seq_chosen = my_sequences[int(number_choice)]
+            content = read_html_file("get.html").render(context={"user_choice": number_choice, "sequence": seq_chosen})
+            print(arguments)
+        elif path.startswith("/gene"):
+            gene_choice = arguments["name"][0]
+            print(gene_choice)
+            gene_chosen = Path("../P02/sequences/" + gene_choice + ".txt")
+            print(gene_chosen)
+            content = read_html_file("gene.html").render(context={"user_choice": gene_choice, "gene": gene_chosen})
+            print(arguments)
+
         else:
             content = Path("./html/error.html").read_text()
             self.send_response(404)  # -- Status line: NOT FOUND

@@ -16,6 +16,45 @@ def read_html_file(filename):
     contents = j.Template(contents)
     return contents
 
+def reverse(seq_from_user):
+    reversed = seq_from_user[::-1]
+
+    return reversed
+
+
+def complement(seq_from_user):
+
+    bases_dict = {"A": "T", "C": "G", "T": "A", "G": "C"}
+    complement_seq = ""
+    for i in seq_from_user:
+        complement_seq += bases_dict[i]
+
+    return complement_seq
+
+def information(seq_from_user):
+    output = ""
+
+    length = len(seq_from_user)
+    output += "Total length: " + str(length) + "\n"
+    bases_dict = {"A": 0, "C": 0, "G":0, "T":0}
+    for i in ["A", "C", "G", "T"]:
+        bases_dict[i] += seq_from_user.count(i)
+
+def information(seq_from_user):
+    output = ""
+
+    length = len(seq_from_user)
+    output += "Total length: " + str(length) + "\n"
+
+    bases_dict = {"A": 0, "C": 0, "G":0, "T":0}
+    for i in ["A", "C", "G", "T"]:
+        bases_dict[i] += seq_from_user.count(i)
+
+    for i in ["A", "C", "G", "T"]:
+        output += i + ": " + str(bases_dict[i]) + " (" + str(round(((bases_dict[i] * 100) / length), 2)) + "%)" + "\n"
+
+    return output
+
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
@@ -58,7 +97,17 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             seq_created = arguments["user_seq"][0]
             operator = arguments["operation"][0]
             print(seq_created)
-            content = read_html_file("operation.html").render(context={"user_seq": seq_created})
+            print(operator)
+
+            my_output = ""
+            if operator == "Info":
+                my_output = information(seq_created)
+            elif operator == "Comp":
+                my_output = complement(seq_created)
+            elif operator == "Rev":
+                my_output = reverse(seq_created)
+
+            content = read_html_file("operation.html").render(context={"user_seq": seq_created, "operation": operator, "solution": my_output})
 
         else:
             content = Path("./html/error.html").read_text()

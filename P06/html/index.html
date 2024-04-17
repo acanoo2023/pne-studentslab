@@ -8,24 +8,24 @@
    <form action="ping" method="get">
     <h1>SEQ2 server</h1>
     <p>Access to the Server</p>
-    <p>___________________________________________________________</p>
+    <hr>
     Is the server alive?
     <input type="submit" value="PING">
-    <p>___________________________________________________________</p>
+    <hr>
    </form>
    <form action="get" method="get">
-   Get a sequence. Select sequence number
+       Get a sequence. Select sequence number
        <select name="n">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-        <input type="submit" value="GET">
+           <input type="submit" value="GET">
       </select>
    </form>
    <form action="gene" method="get">
-       <p>___________________________________________________________</p>
+       <hr>
        Get a Gene. Select the name
        <select name="name">
             <option value="U5">U5</option>
@@ -35,12 +35,10 @@
             <option value="FXN">FXN</option>
         <input type="submit" value="GENE">
        </select>
-   <form action="sequence" method="get">
-      <p>___________________________________________________________</p>
-      Write a sequence:
-      <input type="text" name="user_seq">
-   </form>
    <form action="operation" method="get">
+       <hr>
+       Write a sequence:
+        <input type="text" name="user_seq"><br>
        Select operation
         <input type="radio" name="operation" value="Info"> Info
         <input type="radio" name="operation" value="Comp"> Comp
@@ -48,8 +46,7 @@
        <br>
        Perform operation:
        <input type="submit" value="OPERATE!">
-       <p>___________________________________________________________</p>
-
+       <hr>
    </form>
 </body>
 </html>

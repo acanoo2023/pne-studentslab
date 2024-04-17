@@ -54,6 +54,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             content = read_html_file("gene.html").render(context={"user_choice": gene_choice, "gene": clean_gene})
             print(arguments)
+        elif path.startswith("/operation"):
+            seq_created = arguments["user_seq"][0]
+            operator = arguments["operation"][0]
+            print(seq_created)
+            content = read_html_file("operation.html").render(context={"user_seq": seq_created})
 
         else:
             content = Path("./html/error.html").read_text()

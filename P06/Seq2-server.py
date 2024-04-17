@@ -46,10 +46,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             print(arguments)
         elif path.startswith("/gene"):
             gene_choice = arguments["name"][0]
-            print(gene_choice)
-            gene_chosen = Path("../P02/sequences/" + gene_choice + ".txt")
-            print(gene_chosen)
-            content = read_html_file("gene.html").render(context={"user_choice": gene_choice, "gene": gene_chosen})
+            gene_chosen = Path("./sequences/" + gene_choice + ".txt").read_text()
+            clean_gene = ""
+            list_contents = gene_chosen.split('\n')
+            for i in range(1, len(list_contents)):
+                clean_gene += list_contents[i]
+
+            content = read_html_file("gene.html").render(context={"user_choice": gene_choice, "gene": clean_gene})
             print(arguments)
 
         else:

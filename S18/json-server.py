@@ -25,6 +25,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         # -- Parse the path
         # -- NOTE: self.path already contains the requested resource
         list_resource = self.path.split('?')
+        print(list_resource)  #I do this print to see what I get back
         resource = list_resource[0]
 
         if resource == "/":

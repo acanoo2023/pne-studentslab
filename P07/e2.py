@@ -1,3 +1,4 @@
+import termcolor
 
 
 genes = {
@@ -12,6 +13,11 @@ genes = {
     "KDR": "ENSG00000128052",
     "ANK2": "ENSG00000145362"
 }
-
+print()
 print("Dictionary of Genes!")
-print("Ther are " + str(len(genes)) + " genes in the dictionary")
+print("Ther are " + str(len(genes)) + " genes in the dictionary:")
+print()
+
+for key, value in genes.items():
+    termcolor.cprint(key, 'green', end="")
+    print(": --> " + value)

@@ -3,7 +3,7 @@ import json
 import termcolor
 
 SERVER = "rest.ensembl.org"
-ENDPOINT = "/info/ping"
+ENDPOINT = "/sequence/id/ENSG00000207552"
 PARAMS = "?content-type=application/json"
 URL = SERVER + ENDPOINT + PARAMS
 
@@ -33,7 +33,12 @@ print(f"Response received!: {response.status} {response.reason}\n")
 data1 = response.read().decode("utf-8")
 data_1_json = json.loads(data1)
 
-if data_1_json["ping"] == 1:
-    print("PING OK! The database is running!")
-else:
-    print("The database is not running")
+#If print "print(data_1_json)" all the information can be seeing
+
+
+termcolor.cprint("Gene", 'green', end="")
+print(": " + "MIR633")
+termcolor.cprint("Description", 'green', end="")
+print(": " + data_1_json["desc"])
+termcolor.cprint("Bases", 'green', end="")
+print(": " + data_1_json["seq"])

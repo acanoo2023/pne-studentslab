@@ -21,8 +21,6 @@ except ConnectionRefusedError:
 # -- Read the response message from the server
 response = conn.getresponse()
 
-
-
 print()
 print("Server: " + SERVER)
 print("URL: " + URL)
@@ -32,7 +30,6 @@ print(f"Response received!: {response.status} {response.reason}\n")
 # -- Read the response's body
 data1 = response.read().decode("utf-8")
 data_1_json = json.loads(data1)
-
 #If print "print(data_1_json)" all the information can be seeing
 
 

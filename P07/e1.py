@@ -19,7 +19,7 @@ except ConnectionRefusedError:
     exit()
 
 # -- Read the response message from the server
-r1 = conn.getresponse()
+response = conn.getresponse()
 
 
 
@@ -27,10 +27,10 @@ print()
 print("Server: " + SERVER)
 print("URL: " + URL)
 # -- Print the status line
-print(f"Response received!: {r1.status} {r1.reason}\n")
+print(f"Response received!: {response.status} {response.reason}\n")
 
 # -- Read the response's body
-data1 = r1.read().decode("utf-8")
+data1 = response.read().decode("utf-8")
 data_1_jason = json.loads(data1)
 
 if data_1_jason["ping"] == 1:

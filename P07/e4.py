@@ -27,7 +27,7 @@ while incorrect:
 
 SERVER = "rest.ensembl.org"
 ENDPOINT = "/sequence/id/"
-IDENTIFIER = str(genes["gene_to_work"])
+IDENTIFIER = str(genes[gene_to_work])
 PARAMS = "?content-type=application/json"
 URL = SERVER + ENDPOINT + IDENTIFIER + PARAMS
 
@@ -65,7 +65,7 @@ print(": " + description)
 
 s1 = Seq(data_1_json["seq"])
 
-termcolor.cprint("Total length: " + s1.len())
+termcolor.cprint("Total length: " + str(s1.len()))
 
 bases = ["A", "C", "G", "T"]
 
@@ -73,7 +73,7 @@ for base in bases:
     termcolor.cprint(base, 'blue', end="")
     amount = s1.count_base(base)
     percentage = (amount * 100) / s1.len()
-    print(": " + str(amount) + " (" + str(round(percentage, 2)) + "%)")
+    print(": " + str(amount) + " (" + str(round(percentage, 1)) + "%)")
 
 termcolor.cprint("Most frequent Base: " + s1.most_frequent())
 

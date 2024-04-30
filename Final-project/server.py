@@ -1,9 +1,32 @@
 import http.server
+import http.client
+import json
 import socketserver
 import termcolor
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import jinja2 as j
+
+def get_json(endpoint, params):
+    SERVER = "rest.ensembl.org"
+
+    # Connect with the server
+    conn = http.client.HTTPConnection(SERVER)
+
+    # -- Send the request message, using the GET method. We are
+    # -- requesting the main page (/)
+    try:
+        conn.request("GET", endpoint + params)
+    except ConnectionRefusedError:
+        print("ERROR! Cannot connect to the Server")
+        exit()
+
+    # -- Read the response message from the server
+    response = conn.getresponse()
+    data1 = response.read().decode("utf-8")
+    data_1_json = json.loads(data1)
+
+    return data_1_json
 
 
 PORT = 8080
@@ -30,11 +53,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             content = Path("./html/index.html").read_text()
             self.send_response(200)  # -- Status line: OK!
         if path.startswith("/listSpecies"):
+            data = get_json("/info/species", "?content-type=application/json")
+
             print(arguments)
-            #length = arguments[0]
-            #limit = arguments[1]
-            content = Path("species.html").read_text()
-            #.render(context={"species_length": length, "user_limit": limit})
+
+            content = Path("species.html").read_text().render(context={"species_length": len(data), "user_limit": arguments["user_limit"][0]})
+            #
 
 
 

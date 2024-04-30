@@ -8,7 +8,6 @@ from urllib.parse import parse_qs, urlparse
 import jinja2 as j
 
 
-
 def get_json(endpoint, params):
     SERVER = "rest.ensembl.org"
 

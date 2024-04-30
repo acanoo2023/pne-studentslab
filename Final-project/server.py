@@ -7,7 +7,6 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import jinja2 as j
 
-
 def get_json(endpoint, params):
     SERVER = "rest.ensembl.org"
 
@@ -30,9 +29,16 @@ def get_json(endpoint, params):
     return data_1_json
 
 
+def read_html_file(filename):
+    contents = Path("html/" + filename).read_text()
+    contents = j.Template(contents)
+    return contents
+
+
 PORT = 8080
 
 socketserver.TCPServer.allow_reuse_address = True
+
 
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
@@ -55,14 +61,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)  # -- Status line: OK!
         if path.startswith("/listSpecies"):
             data = get_json("/info/species", "?content-type=application/json")
-
             print(arguments)
 
-            content = Path("species.html").read_text().render(context={"species_length": len(data), "user_limit": arguments["user_limit_1"][0]})
-
-
-
-
+            my_list = []   #ME HE QUEDADO AQUÍ!!!!1 ESTÁ MAL --> CORREGIR
+            for specie in data:
+                my_list += specie
+            print(my_list)
+            content = read_html_file("species.html").render(context={"species_length": len(data["species"]), "user_limit": arguments["user_limit_1"][0]})
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!
@@ -99,3 +104,4 @@ with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print("")
         print("Stopped by the user")
         httpd.server_close()
+

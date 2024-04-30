@@ -7,6 +7,8 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import jinja2 as j
 
+
+
 def get_json(endpoint, params):
     SERVER = "rest.ensembl.org"
 
@@ -57,7 +59,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             print(arguments)
 
-            content = Path("species.html").read_text().render(context={"species_length": len(data), "user_limit": arguments["user_limit"][0]})
+            content = Path("species.html").read_text().render(context={"species_length": len(data), "user_limit": arguments["user_limit_1"][0]})
             #
 
 

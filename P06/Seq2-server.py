@@ -98,6 +98,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             operator = arguments["operation"][0]
             print(seq_created)
             print(operator)
+            #I print them to see them in my terminal
 
             my_output = ""
             if operator == "Info":

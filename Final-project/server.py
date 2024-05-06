@@ -70,6 +70,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             print(my_list)
 
             content = read_html_file("species.html").render(context={"list_species": my_list, "species_length": len(data["species"]), "user_limit": int(arguments["user_limit_1"][0])})
+        if path.startswith("/karyotype"):  #ME HE QUEDADO AQUÍ, TENGO QUE SACAR EL CONTENIDO DE LOS CROMOSMAS DESDE ENSEMBL COMO ANTES CON LAS ESPECIES Y LUEGO UN LOOP EN EL HTML
+
+
+
+
+
+
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!

@@ -6,7 +6,11 @@
 </head>
 <body style="background-color: lightblue;">
     The names of chromosomes are:
-
+    <ul>
+        {% for karyotype in context.list_karyotype %}
+            <li>{{ karyotype }}</li>
+        {% endfor %}
+    </ul>
 
 </body>
 </html>

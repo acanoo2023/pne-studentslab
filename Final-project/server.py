@@ -7,9 +7,9 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import jinja2 as j
 
-def get_json(endpoint, params):
+def get_json(endpoint):
     SERVER = "rest.ensembl.org"
-
+    params = "?content-type=application/json"
     # Connect with the server
     conn = http.client.HTTPConnection(SERVER)
 
@@ -59,24 +59,47 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         if path == "/":
             content = Path("./html/index.html").read_text()
             self.send_response(200)  # -- Status line: OK!
-        if path.startswith("/listSpecies"):
-            data = get_json("/info/species", "?content-type=application/json")
+
+        elif path.startswith("/listSpecies"):
+            if (arguments["limit"][0]).isdigit():
+                if int(arguments["limit"][0]) >= 0:
+                    data = get_json("/info/species")
+                    print(arguments)
+
+                    my_list = []
+                    for i in range(0, len(data["species"])):
+                        my_list.append(data["species"][i]["display_name"])
+                    print(my_list)
+                    content = read_html_file("species.html").render(context={"list_species": my_list, "species_length": len(data["species"]), "user_limit": int(arguments["limit"][0])})
+                else:
+                    content = Path("./html/error.html").read_text()
+            else:
+                content = Path("./html/error.html").read_text()
+
+        elif path.startswith("/karyotype"):  #PREGUNTAR qué pasa si es nombre doble "arabian camel" <-- has karyotype
+            print(arguments)
+            try:
+                data = get_json("info/assembly/" + arguments["specie"][0])
+
+                karyotype_info = []
+                for i in data["karyotype"]:
+                    karyotype_info.append(i)
+                print(karyotype_info)
+                content = read_html_file("karyotype.html").render(context={"list_karyotype": karyotype_info})
+            except KeyError:
+                content = Path("./html/error.html").read_text()
+
+        elif path.startswith("/chromosomeLength"):
             print(arguments)
 
-            my_list = []
-            for i in range(0, len(data["species"])):
-                my_list.append(data["species"][i]["display_name"])
+            data = get_json("info/assembly" + arguments["specie"][0])
 
-            print(my_list)
+            length = ""
+            for info_dict in data["top_level_region"]:
+                if arguments["user_chromosome"][0] == info_dict["name"]:
+                    length = info_dict["length"]
 
-            content = read_html_file("species.html").render(context={"list_species": my_list, "species_length": len(data["species"]), "user_limit": int(arguments["user_limit_1"][0])})
-        if path.startswith("/karyotype"):  #ME HE QUEDADO AQUÍ, TENGO QUE SACAR EL CONTENIDO DE LOS CROMOSMAS DESDE ENSEMBL COMO ANTES CON LAS ESPECIES Y LUEGO UN LOOP EN EL HTML
-
-
-
-
-
-
+            content = read_html_file("chromosome.html").render(context={"chromosome_length": length})
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!

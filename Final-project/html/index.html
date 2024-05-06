@@ -27,5 +27,27 @@
        <input type="text" name="user_chromosome"></p>
        <p><input type="submit" value="Send"></p>
    </form>
+<h2>MEDIUM Level Services</h2>
+    <form action="humangene" method="get">
+        Enter the human gene you want:
+        <input type="text" name="gene">
+        <p>Select operation:
+            <input type="radio" name="operation" value="Seq"> Seq
+            <input type="radio" name="operation" value="Info"> Info
+            <input type="radio" name="operation" value="Calc"> Calc
+            <input type="radio" name="operation" value="List"> List
+        </p>
+        <hr>
+        If "List" selected, please introduce the chromosome, start position and end position:
+        <p>Introduce a chromosome:
+            <input type="text" name="human_chromosome"></p>
+        <p>Introduce the start point:
+            <input type="text" name="start_point"></p>
+        <p>Introduce the end point:
+            <input type="text" name="end_point"></p>
+       <p><input type="submit" value="Send"></p>
+        <hr>
+
+    </form>
 </body>
 </html>

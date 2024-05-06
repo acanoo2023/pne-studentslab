@@ -61,8 +61,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)  # -- Status line: OK!
 
         elif path.startswith("/listSpecies"):
-            if (arguments["limit"][0]).isdigit():
-                if int(arguments["limit"][0]) >= 0:
+            try:
+                if (arguments["limit"][0]).isdigit() and int(arguments["limit"][0]) >= 0:
                     data = get_json("/info/species")
                     print(arguments)
 
@@ -73,7 +73,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     content = read_html_file("species.html").render(context={"list_species": my_list, "species_length": len(data["species"]), "user_limit": int(arguments["limit"][0])})
                 else:
                     content = Path("./html/error.html").read_text()
-            else:
+            except KeyError:
                 content = Path("./html/error.html").read_text()
 
         elif path.startswith("/karyotype"):  #PREGUNTAR qué pasa si es nombre doble "arabian camel" <-- has karyotype
@@ -91,15 +91,19 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif path.startswith("/chromosomeLength"):
             print(arguments)
+            try:
+                data = get_json("info/assembly/" + arguments["specie"][0])
+                if arguments["user_chromosome"][0] in data["karyotype"]:
+                    length = ""
+                    for info_dict in data["top_level_region"]:
+                        if arguments["user_chromosome"][0] == info_dict["name"]:
+                            length = info_dict["length"]
 
-            data = get_json("info/assembly" + arguments["specie"][0])
-
-            length = ""
-            for info_dict in data["top_level_region"]:
-                if arguments["user_chromosome"][0] == info_dict["name"]:
-                    length = info_dict["length"]
-
-            content = read_html_file("chromosome.html").render(context={"chromosome_length": length})
+                    content = read_html_file("chromosome.html").render(context={"chromosome_length": length})
+                else:
+                    content = Path("./html/error.html").read_text()
+            except KeyError:
+                content = Path("./html/error.html").read_text()
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!

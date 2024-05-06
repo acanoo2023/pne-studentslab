@@ -63,11 +63,13 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             data = get_json("/info/species", "?content-type=application/json")
             print(arguments)
 
-            my_list = []   #ME HE QUEDADO AQUÍ!!!!1 ESTÁ MAL --> CORREGIR
-            for specie in data:
-                my_list += specie
+            my_list = []
+            for i in range(0, len(data["species"])):
+                my_list.append(data["species"][i]["display_name"])
+
             print(my_list)
-            content = read_html_file("species.html").render(context={"species_length": len(data["species"]), "user_limit": arguments["user_limit_1"][0]})
+
+            content = read_html_file("species.html").render(context={"list_species": my_list, "species_length": len(data["species"]), "user_limit": int(arguments["user_limit_1"][0])})
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!

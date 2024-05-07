@@ -160,7 +160,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             except KeyError:
                 content = Path("./html/error.html").read_text()
 
+        elif path.startswith("/geneList"):
+            print(arguments)
 
+
+            content =read_html_file("list.html").render(context={})
 
 
 

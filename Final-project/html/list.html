@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GENELIST</title>
+</head>
+<body>
+    <h1>List of genes in chromosome {{context.chromosome}}</h1>
+    <p>Start: {{context.start}}</p>
+    <p>End: {{context.end}}</p>
+    <ul>
+        {% for i in context.names %}
+            <li>{{i}}</li>
+        {% endfor %}
+    </ul>
+    <a href="index.html">Main page</a>
+</body>
+</html>

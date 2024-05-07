@@ -153,9 +153,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 for base in bases:
                     amount = s1.count_base(base)
                     percentage = (amount * 100) / s1.len()
-                    print(": " + str(amount) + " (" + str(round(percentage, 1)) + "%)")
-
-                content = read_html_file("calc.html").render(context={"user_gene": arguments["gene"][0], "list_percentages": my_list})
+                    my_list.append(base + ": " + str(amount) + " (" + str(round(percentage, 1)) + "%)")
+                print(my_list)
+                content = read_html_file("calc.html").render(context={"user_gene": arguments["gene"][0], "list_percentages": my_list, "length": s1.len()})
 
             except KeyError:
                 content = Path("./html/error.html").read_text()

@@ -56,7 +56,6 @@ data1 = response.read().decode("utf-8")
 data_1_json = json.loads(data1)
 #If print "print(data_1_json)" all the information can be seeing
 
-
 termcolor.cprint("Gene", 'green', end="")
 print(": " + gene_to_work)
 termcolor.cprint("Description", 'green', end="")

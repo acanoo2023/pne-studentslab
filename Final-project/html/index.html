@@ -28,26 +28,36 @@
        <p><input type="submit" value="Send"></p>
    </form>
 <h2>MEDIUM Level Services</h2>
-    <form action="humangene" method="get">
-        Enter the human gene you want:
-        <input type="text" name="gene">
-        <p>Select operation:
-            <input type="radio" name="operation" value="Seq"> Seq
-            <input type="radio" name="operation" value="Info"> Info
-            <input type="radio" name="operation" value="Calc"> Calc
-            <input type="radio" name="operation" value="List"> List
-        </p>
-        <hr>
-        If "List" selected, please introduce the chromosome, start position and end position:
-        <p>Introduce a chromosome:
-            <input type="text" name="human_chromosome"></p>
-        <p>Introduce the start point:
-            <input type="text" name="start_point"></p>
-        <p>Introduce the end point:
-            <input type="text" name="end_point"></p>
-       <p><input type="submit" value="Send"></p>
-        <hr>
 
+    <form action="geneSeq" method="get">
+        <p>1) Obtain Gene sequence:</p>
+        Enter the human gene:
+        <input type="text" name="gene">
+        <input type="submit" value="Send">
+    </form>
+    <form action="geneInfo" method="get">
+        <p>2) Obtain Gene Information:</p>
+        Enter the human gene:
+        <input type="text" name="gene">
+        <input type="submit" value="Send">
+    </form>
+    <form action="geneCalc" method="get">
+        <p>3) Obtain Gene Calculations:</p>
+        Enter the human gene:
+        <input type="text" name="gene">
+        <input type="submit" value="Send">
+    </form>
+    <form action="geneList" method="get">
+        <p>4) Obtain Gene List:</p>
+        Enter the human gene:
+        <input type="text" name="gene">
+            <p>Introduce a chromosome:
+                <input type="text" name="chromo"></p>
+            <p>Introduce the start point:
+                <input type="text" name="start"></p>
+            <p>Introduce the end point:
+                <input type="text" name="end"></p>
+       <p><input type="submit" value="Send"></p>
     </form>
 </body>
 </html>

@@ -6,6 +6,8 @@ import termcolor
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 import jinja2 as j
+from Seq1 import Seq
+
 
 def get_json(endpoint):
     SERVER = "rest.ensembl.org"
@@ -76,10 +78,10 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             except KeyError:
                 content = Path("./html/error.html").read_text()
 
-        elif path.startswith("/karyotype"):  #PREGUNTAR qué pasa si es nombre doble "arabian camel" <-- has karyotype
+        elif path.startswith("/karyotype"):
             print(arguments)
             try:
-                data = get_json("info/assembly/" + arguments["specie"][0])
+                data = get_json("info/assembly/" + arguments["specie"][0].replace(" ", "%20"))
 
                 karyotype_info = []
                 for i in data["karyotype"]:
@@ -104,6 +106,84 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     content = Path("./html/error.html").read_text()
             except KeyError:
                 content = Path("./html/error.html").read_text()
+
+        elif path.startswith("/geneSeq"):
+            print(arguments)
+            try:
+                data1 = get_json("/lookup/symbol/homo_sapiens/" + arguments["gene"][0])
+                id = data1["id"]
+                print(id)
+                data2 = get_json("/sequence/id/" + id)
+                result_gene = data2["seq"]
+                print(result_gene)
+
+                content = read_html_file("seq.html").render(context={"user_gene": arguments["gene"][0], "gene_seq": result_gene})
+            except KeyError:
+                content = Path("./html/error.html").read_text()
+
+        elif path.startswith("/geneInfo"):
+            print(arguments)
+            try:
+                data1 = get_json("/lookup/symbol/homo_sapiens/" + arguments["gene"][0])
+                id = data1["id"]
+                data2 = get_json("/sequence/id/" + id)
+                result_gene = data2["seq"]
+
+                data = get_json("/lookup/symbol/homo_sapiens/" + arguments["gene"][0])
+
+                content = read_html_file("info.html").render(context={"user_gene": arguments["gene"][0], "start": data["start"], "end": data["end"], "id": id, "length": len(result_gene)})
+
+            except KeyError:
+                content = Path("./html/error.html").read_text()
+
+        elif path.startswith("/geneCalc"):
+            print(arguments)
+            try:
+                data1 = get_json("/lookup/symbol/homo_sapiens/" + arguments["gene"][0])
+                id = data1["id"]
+                data2 = get_json("/sequence/id/" + id)
+                result_gene = data2["seq"]
+
+                s1 = Seq(result_gene)
+
+                termcolor.cprint("Total length: " + str(s1.len()))
+
+                my_list = []
+                bases = ["A", "C", "G", "T"]
+                for base in bases:
+                    amount = s1.count_base(base)
+                    percentage = (amount * 100) / s1.len()
+                    print(": " + str(amount) + " (" + str(round(percentage, 1)) + "%)")
+
+                content = read_html_file("calc.html").render(context={"user_gene": arguments["gene"][0], "list_percentages": my_list})
+
+            except KeyError:
+                content = Path("./html/error.html").read_text()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!

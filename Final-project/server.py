@@ -31,6 +31,30 @@ def get_json(endpoint):
     return data_1_json
 
 
+def get_final_json(endpoint):
+    # -- I only use this function for the "/geneList" case.
+
+    SERVER = "rest.ensembl.org"
+    params = ";content-type=application/json"
+    # Connect with the server
+    conn = http.client.HTTPConnection(SERVER)
+
+    # -- Send the request message, using the GET method. We are
+    # -- requesting the main page (/)
+    try:
+        conn.request("GET", endpoint + params)
+    except ConnectionRefusedError:
+        print("ERROR! Cannot connect to the Server")
+        exit()
+
+    # -- Read the response message from the server
+    response = conn.getresponse()
+    data1 = response.read().decode("utf-8")
+    data_1_json = json.loads(data1)
+
+    return data_1_json
+
+
 def read_html_file(filename):
     contents = Path("html/" + filename).read_text()
     contents = j.Template(contents)
@@ -81,7 +105,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         elif path.startswith("/karyotype"):
             print(arguments)
             try:
-                data = get_json("info/assembly/" + arguments["specie"][0].replace(" ", "%20"))
+                data = get_json("info/assembly/" + arguments["species"][0].replace(" ", "%20"))
 
                 karyotype_info = []
                 for i in data["karyotype"]:
@@ -94,11 +118,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         elif path.startswith("/chromosomeLength"):
             print(arguments)
             try:
-                data = get_json("info/assembly/" + arguments["specie"][0])
-                if arguments["user_chromosome"][0] in data["karyotype"]:
+                data = get_json("info/assembly/" + arguments["species"][0])
+                if arguments["chromo"][0] in data["karyotype"]:
                     length = ""
                     for info_dict in data["top_level_region"]:
-                        if arguments["user_chromosome"][0] == info_dict["name"]:
+                        if arguments["chromo"][0] == info_dict["name"]:
                             length = info_dict["length"]
 
                     content = read_html_file("chromosome.html").render(context={"chromosome_length": length})
@@ -146,8 +170,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
                 s1 = Seq(result_gene)
 
-                termcolor.cprint("Total length: " + str(s1.len()))
-
                 my_list = []
                 bases = ["A", "C", "G", "T"]
                 for base in bases:
@@ -156,38 +178,35 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     my_list.append(base + ": " + str(amount) + " (" + str(round(percentage, 1)) + "%)")
                 print(my_list)
                 content = read_html_file("calc.html").render(context={"user_gene": arguments["gene"][0], "list_percentages": my_list, "length": s1.len()})
-
             except KeyError:
                 content = Path("./html/error.html").read_text()
 
         elif path.startswith("/geneList"):
-            print(arguments)
+            try:
+                print(arguments)
+                chromo = arguments["chromo"][0]
+                start = arguments["start"][0]
+                end = arguments["end"][0]
 
+                if chromo.isdigit() and start.isdigit() and end.isdigit() and int(start) < int(end):
+                    data1 = get_final_json("/overlap/region/human/" + chromo + ":" + start + "-" + end + "?feature=gene;feature=transcript;feature=cds;feature=exon")
 
-            content =read_html_file("list.html").render(context={})
+                    print(data1)
+                    try:
+                        genes_list = []
 
+                        for i in data1:
+                            if i["feature_type"] == "gene":
+                                genes_list.append(i["assembly_name"])
+                        print(genes_list)
+                        content = read_html_file("list.html").render(context={"chromosome": chromo, "start": start, "end": end, "names": genes_list})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    except TypeError:
+                        content = Path("./html/error.html").read_text()
+                else:
+                    content = Path("./html/error.html").read_text()
+            except KeyError:
+                content = Path("./html/error.html").read_text()
 
         # Generating the response message
         self.send_response(200)  # -- Status line: OK!
